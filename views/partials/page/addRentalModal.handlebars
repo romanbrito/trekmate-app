@@ -1,0 +1,13 @@
+<div id="addRentalModal" class="modal">
+  <form action="/api/car-rental" method="POST">
+    <div class="modal-content">
+        <h4>Add A Rental Car</h4>
+        <input placeholder="Rental Company" name="rental_comp" type="text" class="validate">
+        <input placeholder="Confirmation Number" name="confirmation_num" type="text" class="validate">
+        <input placeholder="Time of Event" name="TripUuid" value="{{trip.uuid}}" type="hidden" class="validate">
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action waves-effect waves-green btn" id="addRental">Submit</button>
+    </div>
+  </form>
+</div>

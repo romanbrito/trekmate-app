@@ -1,0 +1,46 @@
+<form action="/api/trip" method="POST">
+    <div id="addTripModal" class="modal">
+        <div class="modal-content">
+            <h4>Add A Trip</h4>
+            <input placeholder="City (Ex: Austin)" id="trip-city" name="city" type="text" class="validate">
+            <input placeholder="State (Ex: TX)" id="trip-state" name="state" type="text" class="validate" maxlength="2">
+            <input placeholder="Day Leaving (Ex: March 11)" id="trip-leaving" name="departure_date" type="date"
+                   class="datepicker">
+            <input placeholder="Day Returning (Ex: March 15)" id="trip-returning" name="return_date" type="date"
+                   class="datepicker">
+            <input value="{{trips.UserId}}" name="userId" type="hidden">
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Add Trip</button>
+        </div>
+    </div>
+</form>
+
+<div id="user-trips" class="container content">
+    <div class="row valign-wrapper">
+        <div class="col l4 offset-l4 m12 s12 valign">
+            <div class="card darken-1">
+                <div class="card-content">
+                    <span id="trips-title" class="card-title">Pick A Trip</span>
+                    <p id="trip-list">
+                        TRIP LIST<br>
+
+                    <ul>
+                        {{#each trips}}
+                            <li>
+                                <a href="/trip/{{this.uuid}}">{{this.city}}</a>
+
+                            </li>
+                        {{/each}}
+                    </ul>
+
+                    </p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect waves-light btn valign" href="#addTripModal" id="add-trip-link">Add A
+                        Trip</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

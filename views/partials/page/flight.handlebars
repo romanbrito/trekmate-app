@@ -1,0 +1,19 @@
+<div id="flightbox">
+    <div id="carousel">
+        <h4>Flights</h4>
+        <ul>
+            {{#each flight}}
+                <li>
+                    {{this.flight_number}}
+
+                    <form action="/flightStats" method="post">
+                        <input type="hidden" name="flightNumber" value="{{this.flight_number}}">
+                        <input type="hidden" name="flightDate" value="{{this.flight_date}}">
+                        <button class="button submit-btn" type="submit">Flight Informaion</button>
+                    </form>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+

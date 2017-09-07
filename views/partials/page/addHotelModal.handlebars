@@ -1,0 +1,17 @@
+
+<!-- Add Hotel Modal -->
+<div id="addHotelModal" class="modal">
+  <form action="/api/hotel" method="POST">
+    <div class="modal-content">
+        <h4>Add A Hotel</h4>
+        <input placeholder="Hotel Name" name="hotel_name" type="text" class="validate">
+        <input placeholder="Address (Ex. 1900 University Ave Austin TX, 78705)" id="hotel_address"
+               type="text" class="validate">
+        <input placeholder="Check In Time" name="checkin_time" type="text" class="validate">
+        <input placeholder="Time of Event" name="TripUuid" value="{{trip.uuid}}" type="hidden" class="validate">
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action waves-effect waves-green btn" id="addHotel">Submit</button>
+    </div>
+  </form>
+</div>

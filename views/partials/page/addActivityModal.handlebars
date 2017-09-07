@@ -1,0 +1,19 @@
+<style>
+    #addActivityModal {
+        color: #333333;
+    }
+</style>
+<div id="addActivityModal" class="modal">
+  <form action="/api/activity" method="POST">
+    <div class="modal-content">
+        <h4>Add An Activity</h4>
+        <input placeholder="Activity Name" name="activity_name" type="text" class="validate">
+        <input placeholder="Description" name="description" type="text" class="validate">
+        <input placeholder="Time of Event" name="time_of_event" type="text" class="validate">
+        <input placeholder="Time of Event" name="TripUuid" value="{{trip.uuid}}" type="hidden" class="validate">
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="modal-action waves-effect waves-green btn" id="addActivity">Submit</button>
+    </div>
+  </form>
+</div>

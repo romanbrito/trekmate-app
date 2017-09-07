@@ -1,0 +1,30 @@
+
+{{>header}}
+
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<!--Materialize icons-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Custom Stylesheet-->
+<link rel="stylesheet" href="../../css/style.css">
+
+<div class="container">
+    <h1>Dashboard</h1>
+
+    {{> page/addTrip }}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // 3/3 the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('#modal1').modal();
+        $('#addTripModal').modal();
+        $('#addFlightModal').modal();
+    });
+</script>

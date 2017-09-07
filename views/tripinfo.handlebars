@@ -1,0 +1,154 @@
+{{>header}}
+
+<!-- Materialize CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<!--Materialize icons-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
+
+
+<div class="container">
+    <div class="row">
+
+        <!-- FLIGHT DISPLAY -->
+
+        <div class="col l4 m6 s12">
+            <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="http://www.mattis.aero/images/ship.jpg">
+                </div>
+                <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><i
+                class="material-icons right">more_vert</i></span>
+
+                    <p><a class="modal-trigger waves-effect waves-light btn" href="#addFlightModal">Flights</a>
+
+                    </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><i
+                            class="material-icons right">close</i></span>
+                    {{> page/flight }}
+                    {{> page/flightStats }}
+                </div>
+            </div>
+        </div>
+
+        <!-- CAR RENTAL DISPLAY -->
+
+        <div class="col l4 m6 s12">
+            <div class="card small">
+
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"
+                         src="http://chainimage.com/images/car-wallpapers-free-download-maybach-history-1921-2013.jpg">
+                </div>
+
+                <div class="card-content">
+                    <a class="waves-effect waves-light btn" href="#addRentalModal">Add Rental</a>
+                    <span class="card-title activator grey-text text-darken-4"><i
+                            class="material-icons right">more_vert</i></span>
+                </div>
+
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 reveal-head">Transportation<i
+                            class="material-icons right">close</i></span>
+
+                    {{#if carRental }}
+                        {{#each carRental }}
+                        <ul class="cardReveal">
+                            <h6 class="inputStyle"><strong>{{this.rental_comp}}</strong></h6>
+                            <li class="inputStyle"><em>Confirmation: </em>{{this.confirmation_num}}</li>
+                        </ul>
+                        {{/each}}
+                    {{/if}}
+
+                    <span id="userCar"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- HOTEL DISPLAY -->
+
+        <div class="col l4 m6 s12">
+            <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="http://flashydubai.com/images/jumeirah-beach.jpg">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"><i
+                            class="material-icons right">more_vert</i></span>
+                    <a class="waves-effect waves-light btn" id="add-hotel" href="#addHotelModal">Add Hotel</a>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 reveal-head">Hotel<i class="material-icons right">close</i></span>
+                    {{#if hotel }}
+                        {{#each hotel }}
+                        <ul class="cardReveal">
+                            <h6 class="inputStyle"><strong>{{this.hotel_name}}</strong></h6>
+                            <li class="inputStyle">{{this.address}}</li>
+                            <li class="inputStyle"><em>Check In:</em> {{this.checkin_time}}</li>
+                        </ul>
+                        {{/each}}
+                    {{/if}}
+
+                    <span id="userHotel"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITY DISPLAY -->
+
+        <div class="col l12 m6 s12">
+            <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"
+                         src="http://images.all-free-download.com/images/graphicthumb/tourist_information_sign_192713.jpg">
+                </div>
+
+                <div class="card-content">
+                    <a class="waves-effect waves-light btn" href="#addActivityModal">Add Activity</a>
+                    <span class="card-title activator grey-text text-darken-4"><i
+                            class="material-icons right">more_vert</i></span><br>
+                    <p><a id="googleTour" target="_blank" href="#">Activity Look Up</a></p>
+
+                </div>
+
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 reveal-head">Itinerary<i
+                            class="material-icons right">close</i></span>
+
+                        {{#if activity }}
+                            {{#each activity}}
+                            <ul id="event" class="cardReveal" >
+                                <h6 class="inputStyle"><strong>{{this.activity_name}}</strong></h6>
+                                <li class="inputStyle">{{this.description}}</li>
+                            </ul>
+                            {{/each}}
+                        {{/if}}
+                </div>
+
+            </div>
+        </div>
+        <!--modals-->
+
+        {{> page/addHotelModal }}
+        {{> page/addFlightModal }}
+        {{> page/addRentalModal }}
+        {{> page/addActivityModal }}
+
+    </div> <!-- END OF ROW -->
+</div> <!-- END OF CONTAINER -->
+
+<script>
+    $(document).ready(function () {
+        // 3/3 the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('#addRentalModal').modal();
+        $('#addTripModal').modal();
+        $('#addFlightModal').modal();
+        $('#addHotelModal').modal();
+        $('#addActivityModal').modal();
+    });
+</script>

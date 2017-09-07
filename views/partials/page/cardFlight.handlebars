@@ -1,0 +1,15 @@
+<div class="card large">
+    <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="{{cardImage}}">
+    </div>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">{{cardTitle}}<i
+                class="material-icons right">more_vert</i></span>
+        <p>{{>page/flight}}</p>
+        <p><a class="modal-trigger waves-effect waves-light btn" href="#{{modalId}}">{{modalName}}</a></p>
+    </div>
+    <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">{{revealTitle}}<i class="material-icons right">close</i></span>
+        {{> page/flightStats }}
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div id="signUpModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/signup" method="post" class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-10">
+                                <input name="email" type="text" class="form-control" id="inputEmail"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                            <div class="col-lg-10">
+                                <input name="password" type="password" class="form-control" id="inputPassword"
+                                       placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName" class="col-lg-2 control-label">First Name</label>
+                            <div class="col-lg-10">
+                                <input name="first_name" type="text" class="form-control" id="firstName"
+                                       placeholder="First Name"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="col-lg-2 control-label">Last Name</label>
+                            <div class="col-lg-10">
+                                <input name="last_name" type="text" class="form-control" id="firstName"
+                                       placeholder="Last Name"></input>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="phoneNumber" class="col-lg-2 control-label">Phone Number</label>
+                            <div class="col-lg-10">
+                                <input name="phone_number" type="text" class="form-control" id="phoneNumber"
+                                       placeholder="Phone Number"></input>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label for="twitterLink" class="col-lg-2 control-label">Twitter</label>
+                            <div class="col-lg-10">
+                                <input name="twitter_link" type="text" class="form-control" id="twitterLink"
+                                       placeholder="Twitter"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="facebookLink" class="col-lg-2 control-label">Facebook</label>
+                            <div class="col-lg-10">
+                                <input name="facebook_link" type="text" class="form-control" id="facebookLink"
+                                       placeholder="Facebook"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

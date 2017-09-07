@@ -1,0 +1,26 @@
+<div id="signInModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/login" method="POST">
+                    <label for="inputUser">
+                        <span>Enter email</span>
+                    </label>
+                    <input id="inputUser" type="text" name="email" placeholder="email">
+                    <label for="passwordUser">
+                        <span class="actAsPara">Enter password</span>
+                    </label>
+                    <input id="passwordUser" type="password" name="password" placeholder="password">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
