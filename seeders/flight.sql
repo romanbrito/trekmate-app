@@ -1,1 +1,1 @@
-INSERT INTO `treckmate_db`.`flights`(`flight_number`) VALUES('WN 3022');
+INSERT INTO `trekmate_db`.`flights`(`flight_number`) VALUES('WN 3022');

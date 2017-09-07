@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var http = require('http');
 var https = require('https');
-var db = require("../models/index");
+var db = require("../models");
 var config = require('../config/config.json');
 var dateFormat = require('dateformat');
 
@@ -24,11 +24,11 @@ function FlightQueryURL(APIname, protocol, version, format, parameters, options)
     return queryURL;
 }
 
-router.post("/flights", function (req, res) {
-    db.Flight.create({
-        flight_number: req.body.FlightNumber
-    }).then(function (dbFlight) {
-        res.redirect("/trip/" + req.body.tripId);
+router.post("/api/flight", function (req, res) {
+    console.log('flights ' + JSON.stringify(req.body));
+    db.Flight.create(req.body)
+        .then(function (dbFlight) {
+        res.redirect("/trip/" + req.body.TripUuid);
     });
 });
 

@@ -1,25 +1,15 @@
+
+<!-- Add Flight Modal -->
 <div id="addFlightModal" class="modal">
-    <div class="modal-content">
-        <!-- autocomplete example -->
-        <div class="row">
-            <div class="col s12">
-                <div class="row">
-                    <form action="/flights" method="post">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">textsms</i>
-                            <!--<input type="text" id="autocomplete-input" class="autocomplete">-->
-                            <!--<label for="autocomplete-input">Airline</label>-->
-                            <input id="flightDate" type="date" class="datepicker" placeholder="Flight Date">
-                            <input id="flightNumber" type="text" placeholder="Flight Number">
-                            <input type="hidden" name="tripId" value="{{trip.uuid}}">
-                        </div>
-                </div>
-            </div>
+    <form action="/api/flight" method="POST">
+        <div class="modal-content">
+            <h4>Add A Flight</h4>
+            <input placeholder="Flight Date" name="flight_date" class="datepicker" type="date">
+            <input placeholder="Flight Number" name="flight_number" type="text">
+            <input name="TripUuid" value="{{trip.uuid}}" type="hidden">
         </div>
-    </div>
-    <div class="modal-footer">
-        <!-- Button triggers new topic to be added -->
-        <input id="flight-info" class="waves-effect waves-light btn" type="submit" value="Submit">
-        </form>
-    </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action waves-effect waves-green btn" id="addFlightBtn">Submit</button>
+        </div>
+    </form>
 </div>
