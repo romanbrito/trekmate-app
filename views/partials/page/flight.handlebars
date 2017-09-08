@@ -1,3 +1,9 @@
+<style>
+    #flightbox {
+        color: #333333;
+    }
+</style>
+
 <div id="flightbox">
     <div id="carousel">
         <h4>Flights</h4>
@@ -7,13 +13,18 @@
                     {{this.flight_number}}
 
                     <form action="/flightStats" method="post">
-                        <input type="hidden" name="flightNumber" value="{{this.flight_number}}">
-                        <input type="hidden" name="flightDate" value="{{this.flight_date}}">
-                        <button class="button submit-btn" type="submit">Flight Informaion</button>
+                        <input type="hidden" name="flight_number" value="{{this.flight_number}}">
+                        <input type="hidden" name="flight_date" value="{{this.flight_date}}">
+                        <input type="hidden" name="flight_id" value="{{this.id}}">
+                        <input type="hidden" name="TripUuid" value="{{this.TripUuid}}">
+                        <button class="button submit-btn" type="submit">Update Flight Informaion</button>
                     </form>
                 </li>
+                <!--flight stats-->
+                <li>Status &nbsp;{{this.flight_status}}</li>
+                <li>Departure Airport &nbsp;{{this.departure_airport}}</li>
+                <li>Arrival Airport &nbsp;{{this.arrival_airport}}</li>
             {{/each}}
         </ul>
     </div>
 </div>
-

@@ -11,6 +11,18 @@ module.exports = function (sequelize, Datatypes) {
             city_departure: {
                 type: Datatypes.STRING,
                 allowNull: true
+            },
+            flight_status: {
+                type: Datatypes.STRING,
+                allowNull: true
+            },
+            departure_airport: {
+                type: Datatypes.STRING,
+                allowNull: true
+            },
+            arrival_airport: {
+                type: Datatypes.STRING,
+                allowNull: true
             }
         },
         {// Associations
@@ -25,10 +37,10 @@ module.exports = function (sequelize, Datatypes) {
                         }
                     });
                     Flight.hasOne(models.Trip, {
-                      constraints: false,
-                      foreignKey: {
-                        allowNull: true
-                      }
+                        constraints: false,
+                        foreignKey: {
+                            allowNull: true
+                        }
                     });
                 }
             }

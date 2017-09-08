@@ -56,9 +56,9 @@ module.exports = function(router, db) {
                   hotel: hotel,
                   carRental: carRental,
                   activity: activity
-                }
+                };
 
-                console.log(carRental);
+                console.log(flight);
 
                 res.render("tripinfo", info);
               });
