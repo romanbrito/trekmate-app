@@ -19,6 +19,11 @@
                         <input type="hidden" name="TripUuid" value="{{this.TripUuid}}">
                         <button class="button submit-btn" type="submit">Update Flight Informaion</button>
                     </form>
+                    <form method="post" action="/api/flight?_method=DELETE">
+                        <input type="hidden" name="TripUuid" value="{{this.TripUuid}}">
+                        <input type="hidden" name="flight_id" value="{{this.id}}">
+                        <button class="button submit-btn" type="submit">Delete Flight</button>
+                    </form>
                 </li>
                 <!--flight stats-->
                 <li>Status &nbsp;{{this.flight_status}}</li>

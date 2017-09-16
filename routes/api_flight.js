@@ -5,6 +5,8 @@ var https = require('https');
 var db = require("../models");
 var config = require('../config/config.json');
 var dateFormat = require('dateformat');
+var moment = require('moment');
+var tz = require('moment-timezone');
 
 function FlightQueryURL(APIname, protocol, version, format, parameters, options) {
 
@@ -25,8 +27,22 @@ function FlightQueryURL(APIname, protocol, version, format, parameters, options)
 }
 
 router.post("/api/flight", function (req, res) {
-    console.log('flights ' + JSON.stringify(req.body));
+    //console.log('flights ' + JSON.stringify(req.body));
     db.Flight.create(req.body)
+        .then(function (dbFlight) {
+            res.redirect("/trip/" + req.body.TripUuid);
+        });
+});
+
+router.delete("/api/flight", function (req, res) {
+    var flightId = req.body.flight_id;
+    db.Flight.destroy(
+        {
+            where: {
+                id:flightId
+            }
+        }
+    )
         .then(function (dbFlight) {
             res.redirect("/trip/" + req.body.TripUuid);
         });
@@ -36,13 +52,14 @@ router.post("/api/flight", function (req, res) {
 router.post("/flightStats", function (req, res) {
 
     // flight api
-    var flight_date = req.body.flight_date;
+    var day = new Date(req.body.flight_date);
+    var flight_date = day.toISOString().replace(/(....)-(..)-(..)............../g, '$1/$2/$3');
+
     var flight_number = req.body.flight_number;
     var TripUuid = req.body.TripUuid;
     var flightNumberArrStr = flight_number.split(" ");
     var airlineCode = flightNumberArrStr[0];
     var flight = flightNumberArrStr[1];
-    flight_date = dateFormat(flight_date, "yyyy/m/d");
 
 
     // <li>Status &nbsp;{{buffer.flightStatuses.[0].status}}</li>
@@ -57,6 +74,7 @@ router.post("/flightStats", function (req, res) {
     var parameters = "flight/status/" + airlineCode + "/" + flight + "/arr/" + flight_date;
 
     var url = FlightQueryURL("flightstatus", "rest", "v2", "json", parameters, "", "flightInfo");
+    console.log(flight_date);
 
     var request = https.get(url, function (response) {
         var buffer = ""
