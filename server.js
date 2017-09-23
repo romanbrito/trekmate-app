@@ -53,7 +53,7 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var passport = require("./config/passport");
 
-app.use(session({
+var sess = {
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: true,
@@ -61,14 +61,15 @@ app.use(session({
     store: new SequelizeStore({
         db: db.sequelize
     })
-}));
+};
 
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
-  //session.cookie.secure = true // serve secure cookies
+  sess.cookie.secure = true // serve secure cookies
 }
+
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session(sess));
 
 // favicon in /public
 app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
