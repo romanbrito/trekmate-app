@@ -4,9 +4,6 @@ var http = require('http');
 var https = require('https');
 var db = require("../models");
 var config = require('../config/config.json');
-var dateFormat = require('dateformat');
-var moment = require('moment');
-var tz = require('moment-timezone');
 
 function FlightQueryURL(APIname, protocol, version, format, parameters, options) {
 
@@ -60,16 +57,6 @@ router.post("/flightStats", function (req, res) {
     var flightNumberArrStr = flight_number.split(" ");
     var airlineCode = flightNumberArrStr[0];
     var flight = flightNumberArrStr[1];
-
-
-    // <li>Status &nbsp;{{buffer.flightStatuses.[0].status}}</li>
-    // <li>Departure Airport &nbsp;{{buffer.flightStatuses.[0].departureAirportFsCode}}</li>
-    // <li>Arrival Airport &nbsp;{{buffer.flightStatuses.[0].arrivalAirportFsCode}}</li>
-
-    // console.log(flightDate);
-    // console.log(airlineCode);
-    // console.log(flight);
-
 
     var parameters = "flight/status/" + airlineCode + "/" + flight + "/arr/" + flight_date;
 
