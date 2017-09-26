@@ -70,19 +70,24 @@ if (config.use_env_variable) {
         });
 }
 
-app.use(session({
+var sess = {
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
     store: new SequelizeStore({
         db: sequelize
-    })
-}));
+    }),
+    cookie: {}
+};
 
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
-    //session.cookie.secure = true // serve secure cookies
+    sess.cookie.secure = true // serve secure cookies
 }
+
+app.use(session(sess));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
