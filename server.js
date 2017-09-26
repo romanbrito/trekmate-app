@@ -45,10 +45,34 @@ var hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+var Sequelize = require('sequelize');
+var cookieParser = require('cookie-parser');
+
 // Set up sessions and then initialize Passport to enable authentication
 var session = require("express-session");
 var passport = require("./config/passport");
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true, cookie: {} }));
+
+// initalize sequelize with session store
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+// create database, ensure 'sqlite3' in your package.json
+var sequelize = new Sequelize(
+    "trekmate_db",
+    "root",
+    "root", {
+        "dialect": "sqlite",
+        "storage": "./session.sqlite"
+    });
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+}));
+
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     session.cookie.secure = true // serve secure cookies
@@ -78,7 +102,9 @@ app.use(require('./routes/api_flight'));
 // this is the case with associations
 
 db.sequelize.sync({ force: false}).then(function () {
-    var server = app.listen(app.get('port'), function () {
-        console.log('Listening on port ' + app.get('port'));
+    sequelize.sync({force:true}). then(function () {
+        var server = app.listen(app.get('port'), function () {
+            console.log('Listening on port ' + app.get('port'));
+        });
     });
 });
