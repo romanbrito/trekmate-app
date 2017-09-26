@@ -47,29 +47,14 @@ app.set('view engine', 'handlebars');
 
 // Set up sessions and then initialize Passport to enable authentication
 var session = require("express-session");
-
-// initalize sequelize with session store
-var SequelizeStore = require('connect-session-sequelize')(session.Store);
-
 var passport = require("./config/passport");
-
-var sess = {
-    secret: "keyboard cat",
-    resave: true,
-    saveUninitialized: true,
-    cookie: {},
-    store: new SequelizeStore({
-        db: db.sequelize
-    })
-};
-
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true, cookie: {} }));
 if (app.get('env') === 'production') {
-  app.set('trust proxy', 1) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
+    app.set('trust proxy', 1) // trust first proxy
+    session.cookie.secure = true // serve secure cookies
 }
-
 app.use(passport.initialize());
-app.use(passport.session(sess));
+app.use(passport.session());
 
 // favicon in /public
 app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
