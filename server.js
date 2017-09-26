@@ -1,4 +1,3 @@
-
 // Dependencies
 var express = require('express');
 var router = express.Router();
@@ -6,6 +5,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var favicon = require('serve-favicon');
+
+var env       = process.env.NODE_ENV || 'development';
+var config    = require(__dirname + '/config/config.json')[env];
 
 // Set up Express app
 var app = express();
@@ -22,9 +24,9 @@ app.use(express.static(process.cwd() + '/public'));
 
 // Set up the Express app to handle data parsing
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
@@ -55,14 +57,18 @@ var passport = require("./config/passport");
 // initalize sequelize with session store
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+if (config.use_env_variable) {
+    var sequelize = new Sequelize(process.env[config.use_env_variable]);
+} else {
 // create database, ensure 'sqlite3' in your package.json
-var sequelize = new Sequelize(
-    "trekmate_db",
-    "root",
-    "root", {
-        "dialect": "sqlite",
-        "storage": "./session.sqlite"
-    });
+    var sequelize = new Sequelize(
+        "trekmate_db",
+        "root",
+        "root", {
+            "dialect": "sqlite",
+            "storage": "./session.sqlite"
+        });
+}
 
 app.use(session({
     secret: 'keyboard cat',
@@ -101,8 +107,8 @@ app.use(require('./routes/api_flight'));
 // force: true to allow structure modifications in our database,
 // this is the case with associations
 
-db.sequelize.sync({ force: false}).then(function () {
-    sequelize.sync({force:true}). then(function () {
+db.sequelize.sync({force: false}).then(function () {
+    sequelize.sync({force: true}).then(function () {
         var server = app.listen(app.get('port'), function () {
             console.log('Listening on port ' + app.get('port'));
         });
